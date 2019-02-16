@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TipCalculator-counter-jacobmattox</string>
+    <string name="fifteen">15%</string>
+    <string name="twenty">20%</string>
+    <string name="twentyfive">25%</string>
+    <string name="other">Other</string>
 </resources>
