@@ -8,7 +8,7 @@
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="306dp"
+        android:layout_width="345dp"
         android:layout_height="222dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -50,7 +50,7 @@
     </RadioGroup>
 
     <LinearLayout
-        android:layout_width="377dp"
+        android:layout_width="345dp"
         android:layout_height="140dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="3dp"
@@ -70,7 +70,7 @@
             android:layout_weight="1"
             android:baselineAligned="false"
             android:ems="10"
-            android:hint="People"
+            android:hint="@string/people"
             android:inputType="number"
             android:maxLines="100"
             android:selectAllOnFocus="false"
@@ -85,7 +85,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Amount"
+            android:hint="@string/amount"
             android:inputType="numberDecimal"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="14dp"
@@ -94,11 +94,11 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="347dp"
-        android:layout_height="43dp"
+        android:layout_width="345dp"
+        android:layout_height="56dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Enter Number of People, Check Amount, Tip"
+        android:text="@string/text_view_string"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -106,6 +106,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.012" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/calculate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.833" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/reset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.905"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.833" />
 
 </android.support.constraint.ConstraintLayout>

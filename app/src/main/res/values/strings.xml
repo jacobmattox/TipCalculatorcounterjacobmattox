@@ -4,4 +4,9 @@
     <string name="twenty">20%</string>
     <string name="twentyfive">25%</string>
     <string name="other">Other</string>
+    <string name="text_view_string">Enter: Number of People, Check Amount, Tip</string>
+    <string name="people">People</string>
+    <string name="amount">Amount</string>
+    <string name="calculate">Calculate</string>
+    <string name="reset">Reset</string>
 </resources>
