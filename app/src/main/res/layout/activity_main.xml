@@ -14,6 +14,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,13 +44,15 @@
 
         <RadioButton
             android:id="@+id/other"
-            android:layout_width="match_parent"
+            android:layout_width="85dp"
             android:layout_height="1dp"
             android:layout_weight="1"
             android:text="@string/other" />
+
     </RadioGroup>
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="345dp"
         android:layout_height="140dp"
         android:layout_marginStart="1dp"
@@ -139,5 +142,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.833" />
+
+    <LinearLayout
+        android:layout_width="83dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.358"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.626">
+
+        <EditText
+            android:id="@+id/otherTipAmount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:visibility="invisible" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
