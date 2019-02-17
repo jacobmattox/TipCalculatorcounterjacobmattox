@@ -2,10 +2,13 @@ package com.introtoandroid.tipcalculator_counter_jacobmattox;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,16 +57,42 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+            View.OnKeyListener mKeyListener = new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
 
-//        calculate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(tipAmount > .01){
-//                    tipAmount = tipAmount;
-//                }
-//            }
-//        });
+                switch (v.getId()) {
+                    case R.id.amount:
+                        tipAmount = Double.parseDouble(amountText.getText().toString());
+                        return true;
+                    case R.id.people:
+                        numOfPeople = Integer.parseInt(peopleText.getText().toString());
+                        return true;
+                    case R.id.otherTipAmount:
+                        tipAmount = Double.parseDouble(otherTipAmount.getText().toString()) * .01;
+                        return true;
+                }
+                return false;
+            }
 
+        };
 
+        calculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
     }
 }
