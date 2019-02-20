@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.other:
                         otherTipAmount.setVisibility(View.VISIBLE);
+                        tipAmount = 0;
                 }
             }
         });
@@ -93,7 +94,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if(keyCode == KeyEvent.KEYCODE_ENTER){
-                    numOfPeople = Integer.parseInt(peopleText.getText().toString());
+                    try {
+                        numOfPeople = Integer.parseInt(peopleText.getText().toString());
+                    }
+                    catch (Exception e){
+                        showErrorAlert("***WOW***Must enter number of people***WOW***", peopleText.getId());
+                    }
                 }
                 return false;
             }
@@ -102,14 +108,22 @@ public class MainActivity extends AppCompatActivity {
         amountText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(keyCode == KeyEvent.KEYCODE_ENTER){
-                    amount = Double.parseDouble(amountText.getText().toString());
-                    if(numOfPeople > 0){
-                        calculate.setEnabled(true);
-
+                if(keyCode == KeyEvent.KEYCODE_ENTER) {
+                    try {
+                        amount = Double.parseDouble(amountText.getText().toString());
+                        if (numOfPeople > 0) {
+                            calculate.setEnabled(true);
+                            if ((otherTipAmount.getVisibility() == View.VISIBLE) && tipAmount == 0) {
+                                calculate.setEnabled(false);
+                            }
+                        }
+                    }
+                    catch(Exception e){
+                        showErrorAlert("***WOW***Must enter an amount***WOW***", amountText.getId());
                     }
 
                 }
+
                 return false;
             }
         });
@@ -118,34 +132,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if(keyCode == KeyEvent.KEYCODE_ENTER){
-                    tipAmount = Double.parseDouble(otherTipAmount.getText().toString()) * .01;
+                    try {
+                        tipAmount = Double.parseDouble(otherTipAmount.getText().toString()) * .01;
+                    }
+                    catch(Exception e){
+                        showErrorAlert("***WOW***Must enter a tip***WOW***", otherTipAmount.getId());
+                    }
                 }
                 return false;
             }
         });
 
 
-
-//            View.OnKeyListener mKeyListener = new View.OnKeyListener() {
-//            @Override
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                Toast toast = Toast.makeText(getApplicationContext(), "in the amount", Toast.LENGTH_LONG);
-//
-//                switch (v.getId()) {
-//                    case R.id.amount:
-//                        amount = Double.parseDouble(amountText.getText().toString());
-//                        return true;
-//                    case R.id.people:
-//                        numOfPeople = Integer.parseInt(peopleText.getText().toString());
-//                        return true;
-//                    case R.id.otherTipAmount:
-//                        tipAmount = Double.parseDouble(otherTipAmount.getText().toString()) * .01;
-//                        return true;
-//                }
-//                return false;
-//            }
-//
-//        };
 
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,21 +152,19 @@ public class MainActivity extends AppCompatActivity {
                     textView.setText(String.format("%.2f", (amount * (1 + tipAmount) / numOfPeople)));
 
                 }
+                else if (tipAmount < .1){
+                    showErrorAlert("Tip amount too low", otherTipAmount.getId());
+
+                }
+                else if (numOfPeople < 1){
+                    showErrorAlert("Need to specify people", peopleText.getId());
+                }
+                else if( amount > 0) {
+                    showErrorAlert("Need to specify amount of check", amountText.getId());
+                }
+
             }
         });
-//        private void showErrorAlert(String errorMessage, final int fieldId) {
-//            new AlertDialog.Builder(this)
-//                    .setTitle("Error")
-//                    .setMessage(errorMessage)
-//                    .setNeutralButton("Close",
-//                            new DialogInterface.OnClickListener() {
-//                                @Override
-//                                public void onClick(DialogInterface dialog,
-//                                                    int which) {
-//                                    findViewById(fieldId).requestFocus();
-//                                }
-//                            }).show();
-//        }
 
     }
 
@@ -180,5 +176,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+    }
+    private void showErrorAlert(String errorMessage, final int fieldId) {
+        new AlertDialog.Builder(this)
+                .setTitle("Error")
+                .setMessage(errorMessage)
+                .setNeutralButton("Close",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                findViewById(fieldId).requestFocus();
+                            }
+                        }).show();
     }
 }

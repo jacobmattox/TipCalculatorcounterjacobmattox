@@ -85,6 +85,7 @@
             android:maxLines="100"
             android:selectAllOnFocus="false"
             android:singleLine="false"
+            android:text="0"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="202dp"
             tools:layout_editor_absoluteY="272dp" />
@@ -97,6 +98,7 @@
             android:ems="10"
             android:hint="@string/amount"
             android:inputType="numberDecimal"
+            android:text="0.00"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="0dp" />
@@ -172,6 +174,7 @@
             android:layout_height="match_parent"
             android:ems="10"
             android:inputType="number"
+            android:text="0"
             android:textAlignment="center"
             android:visibility="invisible" />
     </LinearLayout>
