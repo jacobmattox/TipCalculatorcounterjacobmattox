@@ -103,7 +103,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/enter"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"

@@ -67,7 +67,7 @@
         app:layout_constraintVertical_bias="0.128">
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/people"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -83,7 +83,7 @@
             tools:layout_editor_absoluteY="272dp" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/amount"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -96,7 +96,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/enter"
         android:layout_width="345dp"
         android:layout_height="56dp"
         android:layout_marginTop="8dp"
