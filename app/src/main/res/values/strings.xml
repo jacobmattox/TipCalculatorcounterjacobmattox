@@ -9,4 +9,12 @@
     <string name="amount">Amount</string>
     <string name="calculate">Calculate</string>
     <string name="reset">Reset</string>
+    <string name="wowamount">***WOW***Must enter an amount***WOW***</string>
+    <string name="wowpeople">***WOW***Must enter number of people***WOW***</string>
+    <string name="wowtip">***WOW***Must enter a tip***WOW***</string>
+    <string name="tipTooLow">Tip amount too low</string>
+    <string name="specifyPeople">Need to specify people</string>
+    <string name="specifyAmount">Need to specify amount</string>
+    <string name="totalPerPerson">Total amount per person: </string>
+    <string name="totalBill">Total bill: </string>
 </resources>

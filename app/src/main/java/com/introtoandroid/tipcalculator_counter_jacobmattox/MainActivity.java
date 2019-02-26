@@ -69,26 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-//        peopleText.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                Toast toast = Toast.makeText(getApplicationContext(), "in the before", Toast.LENGTH_SHORT);
-//                toast.show();
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                Toast toast = Toast.makeText(getApplicationContext(), peopleText.getText().toString(), Toast.LENGTH_SHORT);
-//                toast.show();
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                Toast toast = Toast.makeText(getApplicationContext(), "in the after", Toast.LENGTH_SHORT);
-//                toast.show();
-//            }
-//        });
 
         peopleText.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -98,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         numOfPeople = Integer.parseInt(peopleText.getText().toString());
                     }
                     catch (Exception e){
-                        showErrorAlert("***WOW***Must enter number of people***WOW***", peopleText.getId());
+                        showErrorAlert(getString(R.string.wowpeople), peopleText.getId());
                     }
                 }
                 return false;
@@ -111,6 +91,13 @@ public class MainActivity extends AppCompatActivity {
                 if(keyCode == KeyEvent.KEYCODE_ENTER) {
                     try {
                         amount = Double.parseDouble(amountText.getText().toString());
+                        try {
+                            numOfPeople = Integer.parseInt(peopleText.getText().toString());
+                        }
+                        catch (Exception e){
+                            showErrorAlert(getString(R.string.wowpeople), peopleText.getId());
+                        }
+
                         if (numOfPeople > 0) {
                             calculate.setEnabled(true);
                             if ((otherTipAmount.getVisibility() == View.VISIBLE) && tipAmount == 0) {
@@ -119,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     catch(Exception e){
-                        showErrorAlert("***WOW***Must enter an amount***WOW***", amountText.getId());
+                        showErrorAlert(getString(R.string.wowamount), amountText.getId());
                     }
 
                 }
@@ -136,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                         tipAmount = Double.parseDouble(otherTipAmount.getText().toString()) * .01;
                     }
                     catch(Exception e){
-                        showErrorAlert("***WOW***Must enter a tip***WOW***", otherTipAmount.getId());
+                        showErrorAlert(getString(R.string.wowtip), otherTipAmount.getId());
                     }
                 }
                 return false;
@@ -144,25 +131,38 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (tipAmount > .1 && numOfPeople > 0 && amount > 0) {
-                    textView.setText(String.format("%.2f", (amount * (1 + tipAmount) / numOfPeople)));
+                    textView.setText(getString(R.string.totalPerPerson) + String.format(" %.2f", (amount * (1 + tipAmount) / numOfPeople)) + "\n" + getString(R.string.totalBill) + String.format(" %.2f", (amount * (1 + tipAmount))));
+                    Log.v("shouldBeChanged", textView.getText().toString());
 
                 }
                 else if (tipAmount < .1){
-                    showErrorAlert("Tip amount too low", otherTipAmount.getId());
+                    showErrorAlert(getString(R.string.tipTooLow), otherTipAmount.getId());
 
                 }
                 else if (numOfPeople < 1){
-                    showErrorAlert("Need to specify people", peopleText.getId());
+                    showErrorAlert(getString(R.string.specifyPeople), peopleText.getId());
                 }
                 else if( amount > 0) {
-                    showErrorAlert("Need to specify amount of check", amountText.getId());
+                    showErrorAlert(getString(R.string.specifyAmount), amountText.getId());
                 }
 
+            }
+        });
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tipAmount = 0;
+                amount = 0;
+                textView.setText(getString(R.string.text_view_string));
+                calculate.setEnabled(false);
+                radioGroup.clearCheck();
+                otherTipAmount.setVisibility(View.INVISIBLE);
+                peopleText.setText(null);
+                amountText.setText(null);
             }
         });
 
@@ -171,11 +171,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putString("textView", textView.getText().toString());
+        Log.v("putStringhere", getString(R.string.text_view_string));
+
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        String putString = savedInstanceState.getString("textView");
+        textView.setText(putString);
     }
     private void showErrorAlert(String errorMessage, final int fieldId) {
         new AlertDialog.Builder(this)
