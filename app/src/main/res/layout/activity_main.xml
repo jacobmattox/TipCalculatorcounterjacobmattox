@@ -80,7 +80,8 @@
             android:singleLine="false"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="202dp"
-            tools:layout_editor_absoluteY="272dp" />
+            tools:layout_editor_absoluteY="272dp"
+            android:longClickable="false"/>
 
         <EditText
             android:id="@+id/amount"
@@ -92,7 +93,8 @@
             android:inputType="numberDecimal"
             android:textAlignment="center"
             tools:layout_editor_absoluteX="14dp"
-            tools:layout_editor_absoluteY="272dp" />
+            tools:layout_editor_absoluteY="272dp"
+            android:longClickable="false"/>
     </LinearLayout>
 
     <TextView
@@ -166,7 +168,8 @@
             android:ems="10"
             android:inputType="number"
             android:textAlignment="center"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:longClickable="false"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
